@@ -1,0 +1,4 @@
+node_modules
+feedback.db
+.env
+.DS_Store

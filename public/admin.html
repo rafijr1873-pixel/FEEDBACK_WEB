@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin — Noise SMP Feedback</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%238b5cf6'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='50' font-weight='700' fill='white'>N</text></svg>">
+</head>
+<body>
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">
+          <span class="logo-title">NOISE SMP</span>
+          <span class="logo-subtitle">Admin Panel</span>
+        </div>
+      </a>
+      <div style="display:flex; gap:8px;">
+        <a href="/" class="nav-link">← Kembali</a>
+        <button id="logoutBtn" class="nav-link" style="display:none; cursor:pointer; background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); color: #fca5a5;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login View -->
+  <div id="loginView" class="admin-container" style="display:none;">
+    <div class="login-card">
+      <div class="login-icon">🔒</div>
+      <h2>Masuk Admin</h2>
+      <p>Halaman tersembunyi. Hanya admin yang bisa mengakses pesan.</p>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="passwordInput">Password Admin</label>
+          <input type="password" id="passwordInput" placeholder="Masukkan password" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn" id="loginBtn">
+          <span id="loginBtnText">Masuk →</span>
+          <span id="loginSpinner" class="spinner" style="display:none;"></span>
+        </button>
+        <p id="loginError" style="color: #fca5a5; font-size:13px; margin-top:12px; display:none;"></p>
+      </form>
+      <p style="margin-top:16px; font-size:12px; color: var(--text-muted);">Default password: <code style="background: var(--bg-secondary); padding:2px 6px; border-radius:6px; border:1px solid var(--border);">noiseadmin123</code></p>
+    </div>
+  </div>
+
+  <!-- Dashboard View -->
+  <div id="dashboardView" class="admin-container" style="display:none;">
+    <div class="admin-header">
+      <div class="admin-title">
+        <h1>📥 Kotak Masuk</h1>
+        <p>Semua pesan dari member — terbaru paling atas</p>
+      </div>
+      <button class="btn-secondary btn" style="width:auto; margin-top:0; padding:10px 16px; font-size:13px;" id="refreshBtn">↻ Refresh</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">Total Pesan</div>
+        <div class="stat-value accent" id="totalCount">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Terbaru</div>
+        <div class="stat-value" style="font-size:13px; font-weight:500;" id="latestTime">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Status</div>
+        <div class="stat-value" style="font-size:13px; color:#10b981; font-weight:600;">● Live & Tersimpan</div>
+      </div>
+    </div>
+
+    <div class="messages-header">
+      <h2>Pesan Masuk</h2>
+      <span class="messages-count" id="messagesCount">0 pesan</span>
+    </div>
+
+    <div id="messagesList">
+      <div class="skeleton shimmer"></div>
+      <div class="skeleton shimmer" style="opacity:0.7"></div>
+      <div class="skeleton shimmer" style="opacity:0.4"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-icon" id="toastIcon">✓</div>
+    <span id="toastText">Berhasil</span>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>
